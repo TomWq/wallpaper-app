@@ -25,6 +25,8 @@ export const MiddlewareStorage: StateStorage = {
     removeItem: (name: string) => {
         return Storage.delete(name)
     }
-  }
+}
+
+
 
   export default Storage;

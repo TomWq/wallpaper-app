@@ -2,8 +2,8 @@
  * @Author       : 尚博信_王强 wangqiang03@sunboxsoft.com
  * @Date         : 2024-04-08 15:14:05
  * @LastEditors  : 尚博信_王强 wangqiang03@sunboxsoft.com
- * @LastEditTime : 2024-04-12 15:20:34
- * @FilePath     : /xx-movie/theme.ts
+ * @LastEditTime : 2024-04-16 09:31:06
+ * @FilePath     : /wallpaper/theme.ts
  * @Description  : 主题配色
  * 
  * Copyright (c) 2024 by 尚博信_王强, All Rights Reserved. 
@@ -26,7 +26,11 @@ export const lightTheme = {
       md: 4,
       lg: 8,
       xl: 12
-    }
+    },
+    stacks: {
+      spacing: 4,
+      debug: false,
+    },
   } as const
  
   export const darkTheme = {
@@ -44,5 +48,9 @@ export const lightTheme = {
       md: 4,
       lg: 8,
       xl: 12
-    }
+    },
+    stacks: {
+      spacing: 4,
+      debug: false,
+    },
   } as const

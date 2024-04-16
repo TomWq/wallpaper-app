@@ -1,27 +1,46 @@
-import { StyleSheet } from 'react-native';
+import { Button, StyleSheet } from 'react-native';
 
 import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
+import { Stack,Box ,Columns, Column,Grid,Rows,Row,Tiles,useSpacingHelpers} from '@grapp/stacks';
+
+import {Screen} from '@/components/Screen';
+import { UnistylesRuntime } from 'react-native-unistyles';
+import { useThemeStore } from '@/store/useTheme';
 
 export default function TabOneScreen() {
+
+   const {theme,setTheme,setAutoTheme} = useThemeStore()
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
-    </View>
+        
+      <Screen space={4} paddingX={4} topInset={4}>
+         <Screen.Content flex={'content'}>
+            <Button title='切换主题' onPress={()=>{
+               if(theme === 'light'){
+                setTheme('dark')
+               }else{
+                setTheme('light')
+               }
+            }}/>
+            <Button title='跟随系统' onPress={()=>{
+              setAutoTheme()
+            }}/>
+        </Screen.Content>
+      </Screen>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+   
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    width:100
   },
   separator: {
     marginVertical: 30,
