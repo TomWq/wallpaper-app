@@ -2,7 +2,7 @@
  * @Author       : 尚博信_王强 wangqiang03@sunboxsoft.com
  * @Date         : 1985-10-26 16:15:00
  * @LastEditors  : 尚博信_王强 wangqiang03@sunboxsoft.com
- * @LastEditTime : 2024-04-16 16:06:20
+ * @LastEditTime : 2024-04-17 17:08:29
  * @FilePath     : /wallpaper/app/(tabs)/_layout.tsx
  * @Description  : 
  * 
@@ -12,6 +12,7 @@ import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
 import { Pressable } from 'react-native';
+import CommonConstants from '@/constants/CommonConstants';
 
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
@@ -30,28 +31,22 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          title: CommonConstants.TAB_ONE,
+          tabBarIcon: ({ color }) => <TabBarIcon name="photo" color={color} />,
         }}
       />
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: CommonConstants.TAB_TWO,
+          tabBarIcon: ({ color }) => <TabBarIcon name="film" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="three"
+        options={{
+          title: CommonConstants.TAB_THREE,
+          tabBarIcon: ({ color }) => <TabBarIcon name="th-large" color={color} />,
         }}
       />
     </Tabs>

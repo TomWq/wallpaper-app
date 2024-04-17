@@ -1,15 +1,16 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
+/*
+ * @Author       : 尚博信_王强 wangqiang03@sunboxsoft.com
+ * @Date         : 1985-10-26 16:15:00
+ * @LastEditors  : 尚博信_王强 wangqiang03@sunboxsoft.com
+ * @LastEditTime : 2024-04-17 16:58:52
+ * @FilePath     : /wallpaper/app/_layout.tsx
+ * @Description  : 
+ * 
+ * Copyright (c) 2024 by 尚博信_王强, All Rights Reserved. 
+ */
 import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
 import '@/unistyles';
-import { useThemeStore } from '@/store/useTheme';
-import Storage from '@/utils/Storage';
-import { UnistylesRuntime } from 'react-native-unistyles';
-import { useColorScheme } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import AnimatedSplashLoader from '@/components/AnimatedSplashComponent';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -21,61 +22,20 @@ export const unstable_settings = {
   initialRouteName: '(tabs)',
 };
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-
 
 export default function RootLayout() {
-  const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-    ...FontAwesome.font,
-  });
-
-
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
 
   return <RootLayoutNav />;
 }
 
 function RootLayoutNav() {
 
-  const {theme,isAutoTheme,setTheme} = useThemeStore()
-  const colorScheme = useColorScheme();
-
-  useEffect(()=>{
-    if(isAutoTheme){
-      if(colorScheme ==='dark'){
-        setTheme('dark')
-      }else{
-        setTheme('light')
-      }
-    }else{
-      UnistylesRuntime.setTheme(theme)
-    }
-
-  },[theme,colorScheme])
-
   return (
-    <ThemeProvider value={theme === 'light'? DefaultTheme: DarkTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
-       <StatusBar style={theme === 'light' ? 'dark' : 'light'} animated/>
-    </ThemeProvider>
+    <AnimatedSplashLoader image={require('@/assets/images/splash.png')}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        </Stack>
+    </AnimatedSplashLoader>
   );
 }
